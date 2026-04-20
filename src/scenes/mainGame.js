@@ -294,6 +294,55 @@ export default class MainGame extends Phaser.Scene{
         printSuccessToConsole("Object equipped: ", equipment);
     });
 
+        // ___.unequip(equipment)
+        C4C.Interpreter.define('unequip', (equipment) => {
+        if (!this.registry.get("boughtEquip")) {
+            printWarningToConsole("You have not bought this method!");
+            return;
+        }
+        if (!equipment) {
+            printWarningToConsole("Nothing is specified to unequip!");
+            return;
+        }
+        equipment = String(equipment).toLowerCase();
+
+        const equipmentMap = {
+            crown: 'crownEquipped',
+            flag: 'flagEquipped'
+        };
+        const registryKey = equipmentMap[equipment];
+        if (!registryKey) {
+            printWarningToConsole("Invalid equipment type");
+            return;
+        }
+        const isEquipped = this.registry.get(registryKey);
+        if (!isEquipped) {
+            printWarningToConsole("Equipment not currently equipped");
+            return;
+        }
+
+        this.equippedObject = null;
+        this.registry.set('playerTexture', "player");
+        this.textureVar = "player"
+
+        if(this.registry.get("crownEquipped") && equipment == "flag" ){
+            this.textureVar = "crown";
+            this.equippedObject = "crown";
+            this.registry.set('playerTexture', "crown");
+        }
+        
+        if ( this.registry.get("flagEquipped") && equipment == "crown"){
+            this.textureVar = "flag";
+            this.equippedObject = "flag";
+            this.registry.set('playerTexture', "flag");
+        }
+
+        this.player.setTexture(this.textureVar);
+        this.registry.set(equipment+"Equipped", false);
+
+        printSuccessToConsole("Object unequipped: ", equipment);
+    });
+
 
     C4C.Interpreter.define('manual', () => {
         printlnToConsole("---------------------");
