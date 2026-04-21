@@ -3,7 +3,7 @@ import {printErrorToConsole, printlnToConsole, printToConsole, printWarningToCon
 import marketBkg from '../assets/Marketbkg.PNG';
 import item1 from '../assets/Market1-worms.PNG';
 import item2 from '../assets/Market2-apple.png';
-import item3 from '../assets/Market3-equip.png';
+import item3 from '../assets/Market3-equip&unequip.png';
 import item4 from '../assets/Market4-flag.png';
 import item5 from '../assets/Market5-pizza.png';
 import item6 from '../assets/Market6-baitFor.png';
