@@ -156,6 +156,8 @@ export default class MainGame extends Phaser.Scene{
         // Graphics object for the fishing line — created here so it renders behind the hook
         this.lineGraphics = this.add.graphics();
 
+        this.hook = null;
+
         // Create text displaying coin amount
         this.add.image(90, 40, 'rectangle').setDisplaySize(160, 35);
         this.add.image(30, 40, 'coin').setDisplaySize(30,30);
@@ -464,6 +466,7 @@ export default class MainGame extends Phaser.Scene{
             onComplete: () => {
                 fish.destroy();
                 hook.destroy();
+                this.hook = null;
                 this.spawnFish(true);
             },
         });
@@ -488,6 +491,7 @@ export default class MainGame extends Phaser.Scene{
             alpha: 0,
             duration: 8000,
             ease: 'Power3',
+
             onComplete: () => popup.destroy(),
         });
 }
