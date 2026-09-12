@@ -1,20 +1,22 @@
 import C4C from 'c4c-lib';
 
 // Fish images:
-import Minnow from '../assets/Minnow.png';
-import Carp from '../assets/Carp.png';
-import Bluegill from '../assets/Bluegill.png';
-import Trout from '../assets/Trout.png';
-import Catfish from '../assets/Catfish.png';
-import Bass from '../assets/Bass.png';
-import Tuna from '../assets/Tuna.png';
-import Salmon from '../assets/Salmon.png';
-import RedSnapper from '../assets/RedSnapper.png';
-import Shark from '../assets/Shark.png';
-import Swordfish from '../assets/Swordfish.png';
-import Pufferfish from '../assets/Pufferfish.png';
-import Megalodon from '../assets/Megalodon.png';
-import { printlnToConsole } from '../consoleOperations.js';
+import myMinnow from '../assets/MyMinnow.png';
+import myCarp from '../assets/MyCarp.png';
+import myBluegill from '../assets/MyBluegill.png';
+import myTrout from '../assets/MyTrout.png';
+import myCatfish from '../assets/MyCatfish.png';
+import myBass from '../assets/MyBass.png';
+import myTuna from '../assets/MyTuna.png';
+import mySalmon from '../assets/MySalmon.png';
+import myRedSnapper from '../assets/MyRedSnapper.png';
+import myShark from '../assets/MyShark.png';
+import mySwordfish from '../assets/MySwordfish.png';
+import myPufferfish from '../assets/MyPufferfish.png';
+import myMegalodon from '../assets/MyMegalodon.png';
+
+import roomBkg from '../assets/MyFishbkg.png';
+
 
 export default class MyFish extends Phaser.Scene{
     constructor(){
@@ -22,41 +24,37 @@ export default class MyFish extends Phaser.Scene{
     }
 
     preload(){
+        this.load.image('roomBkg', roomBkg);
 
-        this.load.image('Minnow', Minnow);
-        this.load.image('Carp', Carp);
-        this.load.image('Bluegill', Bluegill);
-        this.load.image('Trout', Trout);
-        this.load.image('Catfish', Catfish);
-        this.load.image('Bass', Bass);
-        this.load.image('Tuna', Tuna);
-        this.load.image('Salmon', Salmon);
-        this.load.image('RedSnapper', RedSnapper);
-        this.load.image('Shark', Shark);
-        this.load.image('Swordfish', Swordfish);
-        this.load.image('Pufferfish',Pufferfish);
-        this.load.image('Megalodon', Megalodon);
-
+        this.load.image('myMinnow', myMinnow);
+        this.load.image('myCarp', myCarp);
+        this.load.image('myBluegill', myBluegill);
+        this.load.image('myTrout', myTrout);
+        this.load.image('myCatfish', myCatfish);
+        this.load.image('myBass', myBass);
+        this.load.image('myTuna', myTuna);
+        this.load.image('mySalmon', mySalmon);
+        this.load.image('myRedSnapper', myRedSnapper);
+        this.load.image('myShark', myShark);
+        this.load.image('mySwordfish', mySwordfish);
+        this.load.image('myPufferfish',myPufferfish);
+        this.load.image('myMegalodon', myMegalodon);
     }
 
     create(){
 
-        let swordCaught = this.registry.get('caughtSwordfish');
-        if (swordCaught){
-            this.add.image(400, 300, 'Swordfish').setDisplaySize(800, 600);
-        } else {
-            this.add.image(400, 300, 'Swordfish').setDisplaySize(800, 600).setTint(0x888888);
-        }
-        
+        this.add.image(400, 300, 'roomBkg').setDisplaySize(800, 600);
 
-        printlnToConsole("Information about fish goes above");
-        printlnToConsole(":)");
-        printlnToConsole(swordCaught);
+        const fishTypes = ['Minnow', 'Carp', 'Bluegill', 'Trout', 'Catfish', 'Bass', 'Tuna', 'Salmon', 'RedSnapper', 'Shark', 'Swordfish', 'Pufferfish', 'Megalodon'];
+        
+        for (const x of fishTypes){
+            if (this.registry.get('caught' + x)){
+                this.add.image(400, 300, 'my'+x); // If you caught the fish, add its image
+                }
+            }
         }
 
     update(){
-        // Game Logic
+        
     }
-
-    // Functions
 }
